@@ -14,9 +14,36 @@ else {
     require_once PROJECT_ROOT_PATH . "/includes/config.dev.php";
 }
 
-if(ENVIRONMENT_DEV) {
-    echo "DEV ENV";
-}
-else {
-    echo "PROD ENV";
-}
+// instantiate our dependencies
+require_once PROJECT_ROOT_PATH . "/vendor/autoload.php";
+
+// include our repositories
+require_once PROJECT_ROOT_PATH . "/repositories/BaseRepository.php";
+require_once PROJECT_ROOT_PATH . "/repositories/UserRepository.php";
+
+$userRepository = new UserRepository(); 
+
+// $userRepository->create('Bobby', 'Tables', 'bobby@bobbytables.com', 'mypassword');
+
+$login = $userRepository->login('bobby@bobbytables.com', 'pikachu');
+var_dump($login);
+
+$userRepository->resetPassword(7, 'pikachu');
+
+$login = $userRepository->login('bobby@bobbytables.com', 'pikachu');
+var_dump($login);
+
+// if($userLogin) {
+//     echo "Welcome, {$userLogin['FirstName']}!";
+// }
+// else {
+//     echo "Login failed...";
+// }
+
+// $users = $userRepository->getAll(); 
+
+// foreach($users as $user) {
+//     echo $user["FirstName"] . "<br />"; 
+// }
+
+// phpinfo();
