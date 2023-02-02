@@ -10,6 +10,10 @@ class UserRepository extends BaseRepository {
         return $this->select("SELECT UserId, FirstName, LastName, Email FROM users WHERE UserId = ?", ['i', $userId]); 
     }
 
+    public function getByForgotPasswordToken($token) {
+        return $this->select("SELECT UserId, FirstName, LastName, Email, ForgotPasswordTokenExpirationTime FROM users WHERE ForgotPasswordToken = ?", ['s', $token]); 
+    }
+
     public function create($firstName, $lastName, $email, $password) {
 
         $salt = $this->generateSalt(8); 
@@ -66,6 +70,9 @@ class UserRepository extends BaseRepository {
         // Add this User Login to our tracking table 
         $this->executeStatement("INSERT INTO UserLogins (UserId) VALUES (?)", ["i", $user["UserId"]]);
 
+
+        unset($user["Password"]);
+        unset($user["Salt"]);
         return $user; 
     }
 
@@ -89,9 +96,25 @@ class UserRepository extends BaseRepository {
             SET ForgotPasswordToken = ?, 
             ForgotPasswordTokenExpirationTime = ?
             WHERE UserId = ?", 
-            ['sssi', [$forgotPasswordToken, $forgotPasswordTokenExpiration, $user["UserId"]]]); 
+            ['ssi', [$forgotPasswordToken, date_format($forgotPasswordTokenExpiration, "Y-m-d H:i:s"), $user["UserId"]]]); 
 
         return $forgotPasswordToken;
+    }
+
+    public function clearForgotPasswordToken($userId) {
+        $user = $this->getByUserId($userId);
+
+        if(!$user) {
+            // User does not exist, we cannot update them. 
+            return false; 
+        }
+
+        return $this->executeStatement(
+            "UPDATE users 
+            SET ForgotPasswordToken = NULL, 
+            ForgotPasswordTokenExpirationTime = NULL
+            WHERE UserId = ?", 
+            ['i', [$userId]]); 
     }
 
     public function resetPassword($userId, $password) {
@@ -127,7 +150,7 @@ class UserRepository extends BaseRepository {
         $factory = new RandomLib\Factory;
         $generator = $factory->getGenerator(new SecurityLib\Strength(SecurityLib\Strength::MEDIUM));
 
-        $forgotPasswordToken = $generator->generateString($length);
+        $forgotPasswordToken = $generator->generateString($length, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
         return $forgotPasswordToken;
     }

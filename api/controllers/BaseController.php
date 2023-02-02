@@ -28,8 +28,27 @@ class BaseController
 	*/
 	protected function getQueryStringParams()
 	{
-		return parse_str($_SERVER['QUERY_STRING'], $query);
-	}
+		parse_str($_SERVER['QUERY_STRING'], $query);
+        return $query;
+    }
+	
+	/** 
+	* Get request body content. 
+	* 
+	* @return array 
+	*/
+	protected function getRequestBodyContent()
+	{
+        try {
+            $body = @file_get_contents('php://input');
+            $body_json = json_decode($body, true);
+            return $body_json;
+        }
+        catch (Error $e) {
+            var_dump($e);
+            die();
+        }
+    }
 	
 	/** 
 	* Send API output. 
