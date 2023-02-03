@@ -1,4 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+/*
+    Color Scheme
+    > #133C55
+    > #386FA4
+    > #59A5D8
+    > #84D2F6
+    > #91E5F6
+*/
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
     width: 100%;

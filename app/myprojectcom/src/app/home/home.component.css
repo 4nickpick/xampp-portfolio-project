@@ -1,0 +1,30 @@
+.home {
+    text-align: center; 
+}
+
+.features {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.feature {
+    border: 1px solid #59A5D8; /* 3rd color from color scheme in styles.css*/
+    border-radius: 3px;
+
+    width: 50%;
+}
+
+.feature mat-icon {
+    font-size: 48px;
+    margin-top: 18px;
+}
+
+button {
+    padding: 10px; 
+    background-color: #84D2F6;
+    font-size: 1rem;
+    border: 1px solid #59A5D8;
+    border-radius: 3px;
+    font-weight: bold;
+}
