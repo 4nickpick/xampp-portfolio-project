@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    width: 100%;
+    margin: 0px; 
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+app-root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+ul {
+    padding: 0; 
+}

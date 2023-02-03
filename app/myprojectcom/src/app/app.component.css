@@ -1,0 +1,90 @@
+/*
+    Color Scheme
+    > #133C55
+    > #386FA4
+    > #59A5D8
+    > #84D2F6
+    > #91E5F6
+*/
+
+header {
+    background-color: #133C55;
+    margin: 0px; 
+
+    display: flex;
+    align-items: center;
+
+    color: white; 
+
+    padding: 0rem 1rem;
+}
+
+header h1 {
+    flex: 1;
+}
+
+header nav {
+    flex: 1;
+
+    margin: 0px; 
+}
+
+header nav ul {
+    list-style: none;
+    width: 100%; 
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+} 
+
+header nav ul li a:hover {
+    text-decoration: underline;
+} 
+
+header nav ul li a.active {
+    font-weight: bold;
+} 
+
+main {
+    background-color: white;
+    
+    padding: 1rem; 
+}
+
+footer {
+    display: flex;
+    align-items: center;
+
+    color: white; 
+
+    background-color: #386FA4;
+    padding: 0rem 1rem;
+}
+
+footer div {
+    flex: 1;
+}
+
+footer div.copyright {
+    font-style: italic;
+}
+
+footer div nav ul {
+    list-style: none;
+    width: 100%; 
+}
+
+footer div nav ul li {
+    list-style: none;
+}
+
+footer div nav ul li a {
+    color: white;
+    text-decoration: none;
+} 
+
+footer div nav ul li a:hover {
+    text-decoration: underline;
+}
