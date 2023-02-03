@@ -6,7 +6,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-// import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent }
@@ -14,6 +14,7 @@ const routes: Routes = [
   ,{ path: 'login', component: LoginComponent }
   ,{ path: 'forgot-password', component: ForgotPasswordComponent }
   ,{ path: 'reset-password', component: ResetPasswordComponent }
+  ,{ path: 'dashboard', component: DashboardComponent }
 ]; // sets up routes constant where you define your routes
 
 // configures NgModule imports and exports

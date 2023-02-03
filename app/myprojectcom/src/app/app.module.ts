@@ -15,6 +15,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ForgotPasswordFormComponent } from './forgot-password-form/forgot-password-form.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ResetPasswordFormComponent } from './reset-password-form/reset-password-form.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ResetPasswordFormComponent } from './reset-password-form/reset-password
     ForgotPasswordComponent,
     ForgotPasswordFormComponent,
     ResetPasswordComponent,
-    ResetPasswordFormComponent
+    ResetPasswordFormComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
