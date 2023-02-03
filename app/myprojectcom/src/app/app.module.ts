@@ -9,13 +9,17 @@ import { HomeComponent } from './home/home.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { CreateAccountFormComponent } from './create-account-form/create-account-form.component';
+import { LoginComponent } from './login/login.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CreateAccountComponent,
-    CreateAccountFormComponent
+    CreateAccountFormComponent,
+    LoginComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,

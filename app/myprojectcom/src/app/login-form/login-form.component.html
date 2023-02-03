@@ -1,0 +1,15 @@
+<div class="login-form">
+
+	<div class="form-line">
+		<label for="email">Email: </label>
+		<input id="email" type="text" [formControl]="email"> 
+    </div>
+    <div class="form-line">
+        <label for="password">Password: </label>
+        <input id="password" type="password" [formControl]="password">
+    </div>
+    <div class="form-line">
+        <button type="button" (click)="login()">Log In</button>
+    </div>
+    
+</div>
