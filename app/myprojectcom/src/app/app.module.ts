@@ -11,6 +11,10 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { CreateAccountFormComponent } from './create-account-form/create-account-form.component';
 import { LoginComponent } from './login/login.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ForgotPasswordFormComponent } from './forgot-password-form/forgot-password-form.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ResetPasswordFormComponent } from './reset-password-form/reset-password-form.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { LoginFormComponent } from './login-form/login-form.component';
     CreateAccountComponent,
     CreateAccountFormComponent,
     LoginComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    ForgotPasswordComponent,
+    ForgotPasswordFormComponent,
+    ResetPasswordComponent,
+    ResetPasswordFormComponent
   ],
   imports: [
     BrowserModule,
