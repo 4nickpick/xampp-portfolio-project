@@ -10,7 +10,12 @@ if ((isset($uri[1]) && $uri[1] != 'users')) {
     exit();
 }
 
+if($_SERVER["REQUEST_METHOD"] == "OPTIONS") {
+    header("HTTP/1.1 200 OK");
+    exit();
+}
+
 require PROJECT_ROOT_PATH . "/controllers/UserController.php";
 $objFeedController = new UserController();
-$strMethodName = isset($uri[2]) ? $uri[2] : "default";
+$strMethodName = isset($uri[2]) && strlen($uri[2]) > 0 ? $uri[2] : "default";
 $objFeedController->{$strMethodName}();

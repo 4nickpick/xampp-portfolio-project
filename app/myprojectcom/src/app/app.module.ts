@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { ForgotPasswordFormComponent } from './forgot-password-form/forgot-passw
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ResetPasswordFormComponent } from './reset-password-form/reset-password-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserService } from 'data/user.service';
 
 @NgModule({
   declarations: [
@@ -35,9 +37,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserModule,
     AppRoutingModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

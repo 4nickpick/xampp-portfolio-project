@@ -1,27 +1,27 @@
-<div class="create-account-form">
-
-    <div class="form-line">
-        <label for="firstName">First Name: </label>
-        <input id="firstName" type="text" [formControl]="firstName">    
+<form [formGroup]="createAccountForm">
+    <div class="create-account-form">
+        <div class="form-line">
+            <label for="firstName">First Name: </label>
+            <input id="firstName" type="text" formControlName="firstName">    
+        </div>
+        <div class="form-line">
+            <label for="lastName">Last Name: </label>
+            <input id="lastName" type="text" formControlName="lastName">
+        </div>
+        <div class="form-line">
+            <label for="email">Email: </label>
+            <input id="email" type="text" formControlName="email">
+        </div>
+        <div class="form-line">
+            <label for="password">Password: </label>
+            <input id="password" type="password" formControlName="password" autocomplete="new-password">
+        </div>
+        <div class="form-line">
+            <label for="passwordAgain">Retype Password: </label>
+            <input id="passwordAgain" type="password" formControlName="passwordAgain" autocomplete="new-password">
+        </div>
+        <div class="form-line">
+            <button type="button" (click)="createAccount()">Create Account</button>
+        </div>
     </div>
-    <div class="form-line">
-        <label for="lastName">Last Name: </label>
-        <input id="lastName" type="text" [formControl]="lastName">
-    </div>
-    <div class="form-line">
-        <label for="email">Email: </label>
-        <input id="email" type="text" [formControl]="email">
-    </div>
-    <div class="form-line">
-        <label for="password">Password: </label>
-        <input id="password" type="password" [formControl]="password">
-    </div>
-    <div class="form-line">
-        <label for="passwordAgain">Retype Password: </label>
-        <input id="passwordAgain" type="password" [formControl]="passwordAgain">
-    </div>
-    <div class="form-line">
-        <button type="button" (click)="createAccount()">Create Account</button>
-    </div>
-    
-</div>
+</form>

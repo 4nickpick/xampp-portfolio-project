@@ -30,14 +30,14 @@ class UserController extends BaseController
                     $strErrorDesc = 'Invalid User ID';
                     $strErrorHeader = 'HTTP/1.1 400 Bad Request';
                 }
-            } catch (Error $e) {
+            } catch (Exception|Error $e) {
                 $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
         } 
         else if(strtoupper($requestMethod) == 'POST'){
             try {
-                $body = $this->getRequestBodyContents(); 
+                $body = $this->getRequestBodyContent(); 
 
                 $firstName = $body["firstName"];
                 $lastName = $body["lastName"];
@@ -47,9 +47,17 @@ class UserController extends BaseController
                 $userRepository = new UserRepository();
                 $user = $userRepository->create($firstName, $lastName, $email, $password);
 
-            } catch (Error $e) {
-                $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
-                $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
+                $responseData = json_encode($user);
+            } 
+            catch (Exception|Error $e) {
+                if(str_contains($e->getMessage(), "Duplicate entry")) {
+                    $strErrorDesc = "Account with email address '{$email}' already exists, please log in.";
+                    $strErrorHeader = 'HTTP/1.1 400 Bad Request';
+                }
+                else {
+                    $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
+                    $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
+                }
             }
         } 
         else {
@@ -82,7 +90,7 @@ class UserController extends BaseController
                 $userRepository = new UserRepository();
                 $arrUsers = $userRepository->getAll();
                 $responseData = json_encode($arrUsers);
-            } catch (Error $e) {
+            } catch (Exception|Error $e) {
                 $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
@@ -119,7 +127,7 @@ class UserController extends BaseController
                 $userRepository = new UserRepository();
                 $user = $userRepository->login($body["email"], $body["password"]);
                 $responseData = json_encode($user);
-            } catch (Error $e) {
+            } catch (Exception|Error $e) {
                 $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
@@ -181,7 +189,7 @@ class UserController extends BaseController
                         array('Content-Type: application/json', $strErrorHeader)
                     );
                 }
-            } catch (Error $e) {
+            } catch (Exception|Error $e) {
                 $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
@@ -213,7 +221,7 @@ class UserController extends BaseController
                         array('Content-Type: application/json', 'HTTP/1.1 200 OK')
                     );
                 }
-            } catch (Error $e) {
+            } catch (Exception|Error $e) {
                 $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
@@ -251,7 +259,7 @@ class UserController extends BaseController
                     $strErrorDesc = $e->getMessage().'Passwords do not match. Please try again.';
                     $strErrorHeader = 'HTTP/1.1 400 Bad Request';
                 }
-            } catch (Error $e) {
+            } catch (Exception|Error $e) {
                 $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
