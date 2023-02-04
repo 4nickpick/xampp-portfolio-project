@@ -23,5 +23,15 @@ export class UserService {
 }
 
 class CreateAccountResponse {
-  
+  userId: number;
+  firstName: string; 
+  lastName: string;
+  email: string; 
+
+  constructor() {
+    this.userId = 0; 
+    this.firstName = "unknown";
+    this.lastName = "unknown";
+    this.email = "unknown";
+  }
 }

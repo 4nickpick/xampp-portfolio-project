@@ -28,7 +28,11 @@ export class CreateAccountFormComponent {
     }
   );
   
-  createAccount() {
+  get form() {
+    return this.createAccountForm.controls;
+  }
+  
+  onSubmit() {
     
     // validate our form entries
     this.userService.createAccount(

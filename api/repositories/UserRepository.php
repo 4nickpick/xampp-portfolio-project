@@ -10,6 +10,10 @@ class UserRepository extends BaseRepository {
         return $this->select("SELECT UserId, FirstName, LastName, Email FROM users WHERE UserId = ?", ['i', $userId]); 
     }
 
+    public function getByEmail($email) {
+        return $this->select("SELECT UserId, FirstName, LastName, Email FROM users WHERE Email LIKE ?", ['s', $email]); 
+    }
+
     public function getByForgotPasswordToken($token) {
         return $this->select("SELECT UserId, FirstName, LastName, Email, ForgotPasswordTokenExpirationTime FROM users WHERE ForgotPasswordToken = ?", ['s', $token]); 
     }

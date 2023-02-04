@@ -1,27 +1,64 @@
-<form [formGroup]="createAccountForm">
+<form [formGroup]="createAccountForm" (ngSubmit)="onSubmit()">
     <div class="create-account-form">
         <div class="form-line">
             <label for="firstName">First Name: </label>
             <input id="firstName" type="text" formControlName="firstName">    
+            <span *ngIf="form['firstName'].invalid && (form['firstName'].dirty || form['firstName'].touched)" class="alert">
+                <span *ngIf="form['firstName'].errors?.['required']">
+                    First Name is required.
+                </span>
+            </span>
         </div>
         <div class="form-line">
             <label for="lastName">Last Name: </label>
             <input id="lastName" type="text" formControlName="lastName">
+            <span *ngIf="form['lastName'].invalid && (form['lastName'].dirty || form['lastName'].touched)" class="alert">
+                <span *ngIf="form['lastName'].errors?.['required']">
+                    Last Name is required.
+                </span>
+            </span>
         </div>
         <div class="form-line">
             <label for="email">Email: </label>
             <input id="email" type="text" formControlName="email">
+            <span *ngIf="form['email'].invalid && (form['email'].dirty || form['email'].touched)" class="alert">
+                <span *ngIf="form['email'].errors?.['required']">
+                    Email is required.
+                </span>
+                <span *ngIf="form['email'].errors?.['email']">
+                    Email must be a valid format.
+                </span>
+            </span>
         </div>
         <div class="form-line">
             <label for="password">Password: </label>
             <input id="password" type="password" formControlName="password" autocomplete="new-password">
+            <span *ngIf="form['password'].invalid && (form['password'].dirty || form['password'].touched)" class="alert">
+                <span *ngIf="form['password'].errors?.['required']">
+                    Password is required.
+                </span>
+                <span *ngIf="form['password'].errors?.['minlength']">
+                    Password must be at least 8 characters.
+                </span>
+            </span>
         </div>
         <div class="form-line">
             <label for="passwordAgain">Retype Password: </label>
             <input id="passwordAgain" type="password" formControlName="passwordAgain" autocomplete="new-password">
+            <span *ngIf="form['passwordAgain'].invalid && (form['passwordAgain'].dirty || form['passwordAgain'].touched)" class="alert">
+                <span *ngIf="form['passwordAgain'].errors?.['required']">
+                    Retype Password is required.
+                </span>
+                <span *ngIf="form['passwordAgain'].errors?.['minlength']">
+                    Password must be at least 8 characters.
+                </span>
+                <span *ngIf="form['passwordAgain'].errors?.['mismatch']">
+                    Passwords do not match.
+                </span>
+            </span>
         </div>
         <div class="form-line">
-            <button type="button" (click)="createAccount()">Create Account</button>
+            <button type="submit" [disabled]="!createAccountForm.valid">Create Account</button>
         </div>
     </div>
 </form>

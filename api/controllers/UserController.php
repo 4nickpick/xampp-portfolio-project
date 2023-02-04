@@ -45,7 +45,9 @@ class UserController extends BaseController
                 $password = $body["password"];
 
                 $userRepository = new UserRepository();
-                $user = $userRepository->create($firstName, $lastName, $email, $password);
+                $userRepository->create($firstName, $lastName, $email, $password);
+
+                $userRepository->getByEmail($email);
 
                 $responseData = json_encode($user);
             } 

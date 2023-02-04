@@ -42,6 +42,7 @@ static MatchValidator(control: AbstractControl) {
         // compare the passwords and see if they match.
         if (password !== passwordAgain) {
             passwordAgainControl.setErrors({ mismatch: true });
+            console.log(password, passwordAgain);
         } else {
             // if passwords match, don't return an error.
             return null;
